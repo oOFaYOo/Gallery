@@ -51,3 +51,9 @@ function arrowRight() {
     image.src = originImageNow.name;
 }
 
+function createPicIco(src) {
+    $(".main_back").append('<div class="pic_ico"><img src=' + src + '></div>');
+}
+
+
+
