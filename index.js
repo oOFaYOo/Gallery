@@ -1,7 +1,7 @@
 "use strict"
 
-import {Api} from "./api";
-const api = new Api("http://127.0.0.1");
+import {Api} from "./api.js";
+const api = new Api();
 const close = document.getElementById("close");
 const pictures = document.getElementsByClassName("pic_ico");
 const image = document.getElementById("origin_pic");
@@ -13,7 +13,7 @@ const originImageNow = {
 };
 const del = document.getElementById("del");
 const add = document.getElementById("add");
-console.info(api.url);
+
 
 //отрисовка страницы
 for(let pic of api.getImages()){
