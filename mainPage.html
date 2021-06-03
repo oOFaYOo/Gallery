@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" type="text/javascript" defer></script>
+    <script src="index.js" type="module" defer></script>
+    <script src="api.js" type="module" defer></script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
     <title>Gallery</title>
 </head>
 <body>
 <div class="sidePanel">
-    <p>+ ADD</p>
-    <p>DELETE</p>
+    <div id="add">+ ADD</div>
+    <div id="del">DELETE</div>
 </div>
 <div class="main_back" id="main_back">
     <div class="pic_big" id="pic_big" hidden>
@@ -24,20 +25,8 @@
         <div class="origin_pic">
             <img id="origin_pic" src="">
         </div>
-        <!--        <div class="del"><img id="del" src="trash_bin_icon-icons.com_67981.png"></div>-->
     </div>
-    <div class="pic_ico"><img src="c7224f6c0f20528272158251e9f58d2c.jpg"></div>
-    <div class="pic_ico"><img src="T0BduXnQlM8.jpg"></div>
-    <div class="pic_ico"><img src="IZajAMA0jm0.jpg"></div>
-    <div class="pic_ico"><img src="c7224f6c0f20528272158251e9f58d2c.jpg"></div>
-    <div class="pic_ico"><img src="T0BduXnQlM8.jpg"></div>
-    <div class="pic_ico"><img src="IZajAMA0jm0.jpg"></div>
-    <div class="pic_ico"><img src="c7224f6c0f20528272158251e9f58d2c.jpg"></div>
-    <div class="pic_ico"><img src="T0BduXnQlM8.jpg"></div>
-    <div class="pic_ico"><img src="T0BduXnQlM8.jpg"></div>
-    <div class="pic_ico"><img src="IZajAMA0jm0.jpg"></div>
-    <div class="pic_ico"><img src="c7224f6c0f20528272158251e9f58d2c.jpg"></div>
-    <div class="pic_ico"><img src="IZajAMA0jm0.jpg"></div>
+    <div class="pic_ico"><img src=""></div>
 </div>
 </body>
 </html>

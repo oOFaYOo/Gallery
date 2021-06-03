@@ -1,22 +1,32 @@
-let close = document.getElementById("close");
-let pictures = document.getElementsByClassName("pic_ico");
-let image = document.getElementById("origin_pic");
-let leftArrow = document.getElementById("left");
-let rightArrow = document.getElementById("right");
+"use strict"
 
-let originImageNow = {
+import {Api} from "./api";
+const api = new Api("http://127.0.0.1");
+const close = document.getElementById("close");
+const pictures = document.getElementsByClassName("pic_ico");
+const image = document.getElementById("origin_pic");
+const leftArrow = document.getElementById("left");
+const rightArrow = document.getElementById("right");
+const originImageNow = {
     number: null,
     name: null,
 };
+const del = document.getElementById("del");
+const add = document.getElementById("add");
+console.info(api.url);
 
+//отрисовка страницы
+for(let pic of api.getImages()){
+    createPicIco(pic);
+}
+
+//обработчики
 close.onclick = () => {
     document.getElementById("pic_big").hidden = true;
     image.src = "";
     originImageNow.number = null;
     originImageNow.name = null;
 }
-console.dir();
-
 
 for(let i = 0; i < pictures.length; i++){
     pictures[i].onclick = () => {
@@ -39,6 +49,11 @@ rightArrow.onclick = () => {
     }
 }
 
+// del.onclick = api.deleteImage();
+//
+// add.onclick = api.addImage();
+
+//функции
 function arrowLeft() {
     originImageNow.number = originImageNow.number-1;
     originImageNow.name =  pictures[originImageNow.number].firstChild.src;

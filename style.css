@@ -18,7 +18,7 @@ body {
     z-index: 2;
 }
 
-.sidePanel p {
+.sidePanel div {
     color: #bfbfbf;
     font-size: 20px;
     font-family: sans-serif;
@@ -31,7 +31,7 @@ body {
     padding-top: 5px;
 }
 
-.sidePanel p:hover {
+.sidePanel div:hover {
     background: linear-gradient(to left, #000000 97%, #ff7f50 97%);
     cursor: pointer;
 }
@@ -51,12 +51,12 @@ body {
 }
 
 .main_back::-webkit-scrollbar-thumb {
-    background-color: #e0e0e0;
+    background-color: #cbcbcb;
     border-radius: 10px;
 }
 
 .main_back::-webkit-scrollbar-thumb:hover {
-    background-color: #bfbfbf;
+    background-color: coral;
 }
 
 .pic_ico {
@@ -90,13 +90,11 @@ body {
     width: 70%;
     height: 90%;
     background-color: rgba(62, 62, 62, 0.9);
-    /*background: linear-gradient(to top, rgba(102, 102, 102, 0.9), rgba(63, 63, 63, 0.9) 80%);*/
     position: absolute;
     min-width: 500px;
     min-height: 500px;
     z-index: 1;
     border-left: #ff7f50 solid 10px;
-
 }
 
 .origin_pic{
@@ -133,24 +131,7 @@ body {
     -webkit-user-select: none;
 }
 
-/*.del{*/
-/*    position: relative;*/
-/*    width: 100%;*/
-/*    height: 10%;*/
-/*    top: 5%;*/
-/*    background-color: rgba(255, 255, 255, 0);*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.del img{*/
-/*    position: relative;*/
-/*    height: 80%;*/
-/*}*/
-
-.close:hover {
+.close:hover, .arrow:hover {
     cursor: pointer;
     transform: scale(1.1, 1.1);
     color: coral;
@@ -168,23 +149,16 @@ body {
     top: 50%;
     font-weight: bold;
     border-radius: 50%;
-}
-
-.arrow:hover {
-    cursor: pointer;
-    transform: scale(1.1, 1.1);
-    color: coral;
+    -webkit-user-select: none;
+    display: block;
 }
 
 #left {
     float: left;
-    display: block;
     margin-left: 10px;
-    -webkit-user-select: none;
 }
+
 #right {
     float: right;
-    display: block;
     margin-right: 10px;
-    -webkit-user-select: none;
 }
