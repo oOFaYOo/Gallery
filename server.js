@@ -35,6 +35,13 @@ server.on("request", function (req, res) {
         });
         return;
     }
+    if(req.method === "GET" && req.url === "/folder_up.png"){
+        fs.readFile('folder_up.png', (err, data)=>{
+            res.setHeader('Content-Type', "image/png");
+            res.end(data);
+        });
+        return;
+    }
     if(req.method === "GET" && req.url === "/api.js"){
         fs.readFile('api.js', (err, data)=>{
             res.setHeader('Content-Type', "text/javascript");
@@ -72,3 +79,26 @@ server.on("request", function (req, res) {
     }
 })
 
+server.on("request", function (req, res) {
+    if(req.method === "DELETE"){
+        fs.unlink("./"+req.url, (err)=>{
+            if(err){
+                console.error(err);
+            } else console.info("Файл удален");
+        })
+    }
+});
+
+server.on("request", function (req, res) {
+        if(req.method === "PUT"){
+            fs.writeFile("./images"+req.url, req.url, function(err) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.info("Файл создан");
+                    }
+                }
+            )
+            res.end();
+        }
+})
