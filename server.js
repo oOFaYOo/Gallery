@@ -84,21 +84,18 @@ server.on("request", function (req, res) {
         fs.unlink("./"+req.url, (err)=>{
             if(err){
                 console.error(err);
-            } else console.info("Файл удален");
+            } else {
+                console.info("Файл удален");
+                res.end();
+            }
         })
     }
 });
 
 server.on("request", function (req, res) {
         if(req.method === "PUT"){
-            fs.writeFile("./images"+req.url, req.url, function(err) {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        console.info("Файл создан");
-                    }
-                }
-            )
-            res.end();
+            let fileStream = fs.createWriteStream("./images"+req.url);
+            req.pipe(fileStream);
+            req.on('end', () => res.end());
         }
 })

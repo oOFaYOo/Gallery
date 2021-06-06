@@ -21,25 +21,14 @@ export class Api{
         } else console.error("Код ошибки: "+response.status);
     }
 
-    async reServerAsync (){
-        let response = await fetch("/", {
-            method: "GET"
-        });
-    }
-
-    reServer (){
-        let request = new XMLHttpRequest();
-        request.open("GET","/", false);
-        request.send();
-    }
-
     async addImage (arr) {
         for(let image of arr) {
             let response = await fetch(image.name, {
                 method: "PUT",
                 headers: {
                     "Content-Type": image.type,
-                }
+                },
+                body: image
             });
             if(response.status !== 200){
                 console.error("Код ошибки: "+response.status);
