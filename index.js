@@ -63,8 +63,8 @@ closeAddPicBlock.onclick = () => {
     addPicBlock.hidden = true;
 }
 
-addFile.onchange = (e) => {
-    api.addImage(addFile.files);
+addFile.onchange = async () => {
+    await api.addImage(addFile.files);
     addPicBlock.hidden = true;
     creatDivsPicturesAndHandlers(true);
     document.getElementById("pic_big").hidden = true;
