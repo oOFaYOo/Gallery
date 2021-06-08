@@ -4,7 +4,7 @@ const path = require('path');
 
 let server = new http.Server;
 
-server.listen(80, "192.168.0.111");
+server.listen(80, "127.0.0.1");
 
 server.on("request", function (req, res) {
     if(req.method === "GET" && req.url === "/"){
