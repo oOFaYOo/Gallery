@@ -12,6 +12,7 @@ export class Api{
             console.error(request.status, request.statusText);
         }
     }
+
     async getImagesAsync (){
         let response = await fetch("/images", {
             method: "GET"
