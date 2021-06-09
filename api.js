@@ -1,25 +1,16 @@
 "use strict"
 
-export class Api{
+export class Api {
 
-    getImagesSync () {
-        let request = new XMLHttpRequest();
-        request.open("GET","/images", false);
-        request.send();
-        if(request.status === 200){
-            return JSON.parse(request.response);
-        } else {
-            console.error(request.status, request.statusText);
-        }
-    }
-
-    async getImagesAsync (){
+    async getImagesAsync () {
         let response = await fetch("/images", {
             method: "GET"
         });
-        if(response.status === 200){
+        if (response.status === 200) {
             return response.json();
-        } else console.error("Код ошибки: "+response.status);
+        } else {
+            throw new Error(`Can't get images. Error code: ${response.status}`);
+        }
     }
 
     async addImage (arr) {
@@ -32,7 +23,7 @@ export class Api{
                 body: image
             });
             if(response.status !== 200){
-                console.error("Код ошибки: "+response.status);
+                throw new Error(`Unable to add image. Error code: ${response.status}`);
             }
         }
     }
@@ -42,7 +33,7 @@ export class Api{
             method: "DELETE",
         });
         if(response.status !== 200){
-            console.error("Код ошибки: "+response.status);
+            throw new Error(`Image cannot be deleted. Error code: ${response.status}`);
         }
     }
 

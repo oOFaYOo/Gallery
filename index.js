@@ -41,12 +41,16 @@ rightArrow.onclick = () => {
 }
 
 delButton.onclick = async () => {
-    if (originImageNow.name) {
-        await api.deleteImage(originImageNow.name);
-        creatDivsPicturesAndHandlers(true);
-        document.getElementById("pic_big").hidden = true;
-        originImage.src = "";
-        clearOriginImage(originImageNow);
+    try {
+        if (originImageNow.name) {
+            await api.deleteImage(originImageNow.name);
+            await creatDivsPicturesAndHandlers(true);
+            document.getElementById("pic_big").hidden = true;
+            originImage.src = "";
+            clearOriginImage(originImageNow);
+        }
+    } catch (e) {
+        console.error(e);
     }
 };
 
@@ -62,10 +66,14 @@ closeAddImageBlock.onclick = () => {
 }
 
 addFileInput.onchange = async () => {
-    await api.addImage(addFileInput.files);
-    addImageBlock.hidden = true;
-    creatDivsPicturesAndHandlers(true);
-    document.getElementById("pic_big").hidden = true;
+    try {
+        await api.addImage(addFileInput.files);
+        addImageBlock.hidden = true;
+        await creatDivsPicturesAndHandlers(true);
+        document.getElementById("pic_big").hidden = true;
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 
@@ -85,12 +93,13 @@ function createDivImageIco(src) {
     $(".main_back").append('<div class="pic_ico"><img src=' + src + '></div>');
 }
 
-function creatDivsPicturesAndHandlers(needCleanup) {
+async function creatDivsPicturesAndHandlers(needCleanup) {
+    try{
     if (needCleanup) {
         $("div").remove(".pic_ico");
     }
 
-    for (let image of api.getImagesSync()) {
+    for (let image of await api.getImagesAsync()) {
         createDivImageIco(image);
     }
 
@@ -109,6 +118,10 @@ function creatDivsPicturesAndHandlers(needCleanup) {
                 originImageBlock.hidden = false;
             }
         }
+    }}
+    catch (e) {
+        console.error(e);
+        setTimeout(() => creatDivsPicturesAndHandlers(needCleanup), 5000);
     }
 }
 
@@ -116,5 +129,4 @@ function clearOriginImage(originImage) {
     originImage.number = null;
     originImage.name = null;
 }
-
 
