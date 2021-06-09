@@ -20,7 +20,7 @@ const originImageNow = {
     name: null,
 };
 
-creatDivsPicturesAndHandlers();
+createDivsPicturesAndHandlers();
 
 closeOriginImage.onclick = () => {
     document.getElementById("pic_big").hidden = true;
@@ -44,7 +44,7 @@ delButton.onclick = async () => {
     try {
         if (originImageNow.name) {
             await api.deleteImage(originImageNow.name);
-            await creatDivsPicturesAndHandlers(true);
+            await createDivsPicturesAndHandlers(true);
             document.getElementById("pic_big").hidden = true;
             originImage.src = "";
             clearOriginImage(originImageNow);
@@ -69,7 +69,7 @@ addFileInput.onchange = async () => {
     try {
         await api.addImage(addFileInput.files);
         addImageBlock.hidden = true;
-        await creatDivsPicturesAndHandlers(true);
+        await createDivsPicturesAndHandlers(true);
         document.getElementById("pic_big").hidden = true;
     } catch (e) {
         console.error(e);
@@ -93,7 +93,7 @@ function createDivImageIco(src) {
     $(".main_back").append('<div class="pic_ico"><img src=' + src + '></div>');
 }
 
-async function creatDivsPicturesAndHandlers(needCleanup) {
+async function createDivsPicturesAndHandlers(needCleanup) {
     try{
     if (needCleanup) {
         $("div").remove(".pic_ico");
@@ -105,7 +105,7 @@ async function creatDivsPicturesAndHandlers(needCleanup) {
 
     for (let i = 0; i < pictures.length; i++) {
         pictures[i].onclick = () => {
-            if (addImageBlock.hidden === true) {
+            if (addImageBlock.hidden) {
                 originImageNow.number = i;
                 originImageNow.name = pictures[originImageNow.number].firstChild.src;
                 originImage.src = originImageNow.name;
@@ -121,7 +121,6 @@ async function creatDivsPicturesAndHandlers(needCleanup) {
     }}
     catch (e) {
         console.error(e);
-        setTimeout(() => creatDivsPicturesAndHandlers(needCleanup), 5000);
     }
 }
 
